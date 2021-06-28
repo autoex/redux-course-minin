@@ -10,8 +10,8 @@ const App = () => {
                 <div className='col'><FormPosts /></div>
             </div>
             <div className='row'>
-                <div className='col'><Posts/></div>
-                <div className='col'><FetchedPosts/></div>
+                <div className='col'><Posts posts={[1,2,3,4]}/></div>
+                <div className='col'><FetchedPosts posts={[]}/></div>
             </div>
         </div>
     );
