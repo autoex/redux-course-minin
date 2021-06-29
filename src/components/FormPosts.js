@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {addPost} from "../redux/posts-reducer";
+import Alert from "../assets/Alert";
+import {alertHide, alertShow} from "../redux/app-reducer";
 
 class FormPosts extends Component {
     state = {
@@ -12,6 +14,8 @@ class FormPosts extends Component {
 
         const {title} = this.state;
         if (!title.trim()) {
+
+            this.props.alertShow()
             this.setState({
                 title: ''
             });
@@ -27,6 +31,7 @@ class FormPosts extends Component {
         console.log(title);
 
         this.props.addPost(newPost);
+        this.props.alertHide()
 
     };
     inputChangeHandler = e => {
@@ -40,6 +45,8 @@ class FormPosts extends Component {
     render() {
         return (
             <form onSubmit={this.submitHandler} className='mb-5'>
+                {this.props.alertVisible && <Alert message={'Enter few words'}/>}
+
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
                     <input onChange={this.inputChangeHandler} placeholder='Type here..' type="text"
@@ -51,4 +58,8 @@ class FormPosts extends Component {
     }
 }
 
-export default connect(null, {addPost})(FormPosts);
+const mapStateToProps =(state)=> ({
+    alertVisible: state.app.alertVisible
+})
+
+export default connect(mapStateToProps, {addPost, alertShow, alertHide})(FormPosts);
