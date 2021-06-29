@@ -1,12 +1,12 @@
+import {isFetching} from "./app-reducer";
+
 const ADD_POST = 'ADD_POST';
 const SET_POSTS = 'GET_POSTS';
-const IS_FETCHING = 'IS_FETCHING';
 
 
 const initState = {
     posts: [],
-    fetchedPosts: [],
-    isFetching: false
+    fetchedPosts: []
 }
 
 
@@ -16,8 +16,7 @@ const postsReducer = (state = initState, action) => {
             return {...state, posts: [...state.posts, action.newPost]}
         case SET_POSTS:
             return  {...state, fetchedPosts: action.payload}
-        case IS_FETCHING:
-            return {...state, isFetching: action.payload}
+
 
         default:
 
@@ -31,10 +30,7 @@ export const addPost =(newPost)=> ({
     newPost
 })
 
-const isFetching =(payload)=> ({
-    type:IS_FETCHING,
-    payload
-})
+
 
 const setPost =(payload)=> ({
     type:SET_POSTS,
