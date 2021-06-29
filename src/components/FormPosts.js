@@ -11,6 +11,11 @@ class FormPosts extends Component {
         e.preventDefault();
 
         const {title} = this.state;
+        if (!title.trim()) {
+            this.setState({
+                title: ''
+            });
+            return};
         const newPost ={
             title, id:Date.now().toString()
         };

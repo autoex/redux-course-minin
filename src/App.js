@@ -12,7 +12,7 @@ const App = () => {
             </div>
             <div className='row'>
                 <div className='col'><Posts /></div>
-                <div className='col'><FetchedPosts posts={[]}/></div>
+                <div className='col'><FetchedPosts /></div>
             </div>
         </div>
     );
