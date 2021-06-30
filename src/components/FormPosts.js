@@ -15,7 +15,7 @@ class FormPosts extends Component {
         const {title} = this.state;
         if (!title.trim()) {
 
-            this.props.alertShow()
+            this.props.alertShow('Enter few words')
             this.setState({
                 title: ''
             });
@@ -45,7 +45,7 @@ class FormPosts extends Component {
     render() {
         return (
             <form onSubmit={this.submitHandler} className='mb-5'>
-                {this.props.alertVisible && <Alert message={'Enter few words'}/>}
+                {this.props.alertVisible && <Alert message={this.props.alertText}/>}
 
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
@@ -59,7 +59,8 @@ class FormPosts extends Component {
 }
 
 const mapStateToProps =(state)=> ({
-    alertVisible: state.app.alertVisible
+    alertVisible: state.app.alertVisible,
+    alertText: state.app.alertText
 })
 
 export default connect(mapStateToProps, {addPost, alertShow, alertHide})(FormPosts);

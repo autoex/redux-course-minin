@@ -5,6 +5,7 @@ const ALERT_HIDE = 'ALERT_HIDE';
 
 const initState = {
     alertVisible: false,
+    alertText: '',
     isFetching: false
 }
 
@@ -19,7 +20,7 @@ const appReducer = (state = initState, action) => {
             return {...state, alertVisible: false}
 
         case ALERT_SHOW:
-            return {...state, alertVisible: true}
+            return {...state, alertVisible: true, alertText: action.payload}
 
         default:
 
@@ -35,8 +36,9 @@ export const isFetching =(payload)=> ({
     payload
 })
 
-export const alertShow =()=> ({
-    type: ALERT_SHOW
+export const alertShow =(payload)=> ({
+    type: ALERT_SHOW,
+    payload
 
 })
 
