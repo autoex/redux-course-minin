@@ -36,11 +36,12 @@ export const isFetching =(payload)=> ({
     payload
 })
 
-export const alertShow =(payload)=> ({
+export const alertShow =(payload)=>(dispatch)=> {
+    dispatch({
     type: ALERT_SHOW,
-    payload
+    payload})
 
-})
+setTimeout(()=>{dispatch(alertHide())}, 2500)}
 
 export const alertHide =()=> ({
     type: ALERT_HIDE
